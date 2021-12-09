@@ -1,7 +1,12 @@
-GID := $(getent group $UID | awk -F":" '{print$3}')
+GID := $(shell id -g)
+UID := $(shell id -u)
 
-env:
-	@docker run --entrypoint /bin/sh -i -p 3030:3030 --rm -t -u $(UID):$(GID) -v $(PWD):/usr/src -w /usr/src node:alpine
+build:
+	docker build --build-arg GID=$(GID) --build-arg UID=$(UID) -t utils:slidev .
+
+env: build
+	cp process.sh /usr/local/bin/slidev
+	chmod +x /usr/local/bin/slidev
 
 clean:
 	-@rm -fr node_modules package-lock.json
