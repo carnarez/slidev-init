@@ -5,11 +5,7 @@ ARG UID=1000
 
 ENV PATH=/home/node/node_modules/.bin/:$PATH
 
-WORKDIR /home/node
-
-RUN if [ `grep -c ":$GID:" /etc/group` -eq "0" ]; then addgroup -S -g $GID mermaid; fi \
- && if [ `grep -c ":$UID:" /etc/group` -eq "0" ]; then adduser -D -G mermaid -H -S -s /bin/sh -u $UID mermaid; fi \
- && apt-get update \
+RUN apt-get update \
  && apt-get install --no-install-recommends --no-install-suggests --yes \
       ca-certificates \
       fonts-liberation2 \
@@ -51,15 +47,19 @@ RUN if [ `grep -c ":$GID:" /etc/group` -eq "0" ]; then addgroup -S -g $GID merma
       libxtst6 \
       lsb-release \
       xdg-utils \
- && echo "update-notifier=false" > /home/node/.npmrc \
- && npm config set update-notifier false \
+ && if [ `grep -c ":$GID:" /etc/group` -eq "0" ]; then groupadd -g $GID -r pre-commmit; fi \
+ && if [ `grep -c ":$UID:" /etc/group` -eq "0" ]; then useradd -d /home/mermaid -g $GID -m -s /bin/bash -u $UID mermaid; fi
+
+USER $UID
+
+WORKDIR /home/node
+
+RUN echo "update-notifier=false" > /home/node/.npmrc \
  && npm install --no-audit --no-fund -s @mermaid-js/mermaid-cli \
  && npm cache clean --force \
  && echo '{"args": ["--no-sandbox"]}' > puppeteer-config.json
 
 WORKDIR /usr/src
-
-USER $UID
 
 ENTRYPOINT ["mmdc", "-p", "/home/node/puppeteer-config.json"]
 CMD ["--help"]
