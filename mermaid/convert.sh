@@ -9,4 +9,4 @@ if [ $# -lt 1 ]; then
 fi
 
 GID=`getent group $UID | awk -F":" '{print$3}'`
-docker run --rm -u $UID:$GID -v $(dirname `realpath $1`)/diagrams:/data minlag/mermaid-cli -i /data/$1 -o /data/${2:-output.svg}
+docker run --rm -u $UID:$GID -v $(dirname `realpath $1`):/data minlag/mermaid-cli -i /data/$1 -o /data/${2:-output.svg}
