@@ -1,5 +1,3 @@
-SHELL=/bin/bash
-
 GID := $(shell id -g)
 UID := $(shell id -u)
 
