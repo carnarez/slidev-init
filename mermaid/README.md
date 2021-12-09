@@ -1,10 +1,11 @@
-**[`Mermaid`](https://github.com/mermaid-js/mermaid) helper tool to render diagrams.**
-Run `bash convert.sh <input.mmd> <output.svg>` with the former argument the diagram in
-plain text (`.mmd` format) and the latter the output (`.png` or `.svg`).
+**[`Mermaid`](https://github.com/mermaid-js/mermaid) helper tool to render diagrams from
+the command line.** Run `bash convert.sh <input.mmd> <output.svg>`, the _former_
+argument being the diagram in plain text (`.mmd` format), and the _latter_ the output
+(`.png` or `.svg` format).
 
 Note the image is the [official](https://hub.docker.com/r/minlag/mermaid-cli)
 [`mermaid-cli`](https://github.com/mermaid-js/mermaid-cli) image, and is VERY large as
-this latter requires `chromium` and other libraries to run...
+it requires `chromium` and other libraries to run...
 
 Another way to use this script:
 
