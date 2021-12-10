@@ -1,3 +1,5 @@
+#!/bin/sh
+
 GID=$(id -g)
 
 if [ ! -d $PWD/node_modules ]; then
