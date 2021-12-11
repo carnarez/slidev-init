@@ -10,4 +10,4 @@ else
   docker run --rm -u $UID:$GID -v $PWD:/usr/src utils:slidev -c 'npm install --no-audit --no-fund | grep -v ^$'
 fi
 
-docker run -i -p 3030:3030 --rm -t -u $UID:$GID -v $PWD:/usr/src utils:slidev
+docker run -i --name slidev -p 3030:3030 --rm -t -u $UID:$GID -v $PWD:/usr/src utils:slidev
