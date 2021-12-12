@@ -1,5 +1,11 @@
 #!/bin/sh
 
-GID=$(id -g)
-
-docker run --name prettier --rm -u $UID:$GID -v $PWD:/usr/src -w /usr/src utils:prettier $@
+docker run --name prettier \
+           --rm \
+           -u $(id -u):$(id -g) \
+           -v "$PWD":/usr/src \
+           -v /etc/group:/etc/group:ro \
+           -v /etc/passwd:/etc/passwd:ro \
+           -v /etc/shadow:/etc/shadow:ro \
+           utils:prettier \
+           "$@"
