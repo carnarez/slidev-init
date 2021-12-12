@@ -1,5 +1,11 @@
 #!/bin/bash
 
-GID=$(id -g)
-
-docker run --name mermaid --rm -u $UID:$GID -v $PWD:/usr/src utils:mermaid $@
+docker run --name mermaid \
+           --rm \
+           -u $(id -u):$(id -g) \
+           -v "$PWD":/usr/src \
+           -v /etc/group:/etc/group:ro \
+           -v /etc/passwd:/etc/passwd:ro \
+           -v /etc/shadow:/etc/shadow:ro \
+           utils:mermaid \
+           "$@"

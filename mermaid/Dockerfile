@@ -1,9 +1,6 @@
 FROM node:slim
 
-ARG GID=1000
-ARG UID=1000
-
-ENV PATH=/home/node/node_modules/.bin/:$PATH
+ENV PATH=$PATH:/home/node/node_modules/.bin
 
 RUN apt-get update \
  && apt-get install --no-install-recommends --no-install-suggests --yes \
@@ -46,11 +43,9 @@ RUN apt-get update \
       libxss1 \
       libxtst6 \
       lsb-release \
-      xdg-utils \
- && if [ `grep -c ":$GID:" /etc/group` -eq "0" ]; then groupadd -g $GID -r pre-commmit; fi \
- && if [ `grep -c ":$UID:" /etc/group` -eq "0" ]; then useradd -d /home/mermaid -g $GID -m -s /bin/bash -u $UID mermaid; fi
+      xdg-utils
 
-USER $UID
+USER node
 
 WORKDIR /home/node
 

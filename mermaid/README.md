@@ -2,4 +2,4 @@
 the command line.** Run `make env' to get everything set up (some might need to be run
 as root).
 
-Convenient UID and GID, if not existing, will be added to the container during build.
+Users and groups are mounted (read-only) from the host system to avoid ownership issues.
