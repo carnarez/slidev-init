@@ -1,8 +1,7 @@
-GID := $(shell id -g)
-UID := $(shell id -u)
+whoami := $(shell whoami)
 
 build:
-	docker build --build-arg GID=$(GID) --build-arg UID=$(UID) -t utils:pycheck .
+	docker build --build-arg username=$(whoami) -t utils:pycheck .
 
 env: build
 	cp process.sh /usr/local/bin/pycheck

@@ -9,4 +9,4 @@ Code in the current directory will be checked by:
 * [`pydocstyle`](https://github.com/PyCQA/pydocstyle) to check docstrings (already
   included in `flake8` but better to have it in clear).
 
-Convenient UID and GID, if not existing, will be added to the container during build.
+Users and groups are mounted (read-only) from the host system to avoid ownership issues.
