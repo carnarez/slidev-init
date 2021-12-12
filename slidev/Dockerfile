@@ -1,15 +1,10 @@
 FROM node:alpine
 
-ARG GID=1000
-ARG UID=1000
+ENV PATH=$PATH:node_modules/.bin
 
-RUN if [ `grep -c ":$GID:" /etc/group` -eq "0" ]; then addgroup -S -g $GID slidev; fi \
- && if [ `grep -c ":$UID:" /etc/group` -eq "0" ]; then adduser -D -G slidev -H -S -s /bin/sh -u $UID slidev; fi \
- && echo "update-notifier=false" > /home/node/.npmrc \
+RUN echo "update-notifier=false" > /home/node/.npmrc \
  && npm config set update-notifier false
 
 WORKDIR /usr/src
-
-USER $UID
 
 ENTRYPOINT ["/bin/sh"]
