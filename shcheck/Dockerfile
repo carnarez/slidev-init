@@ -17,4 +17,4 @@ COPY --from=fetch /usr/local/bin/shellcheck /bin/shellcheck
 
 WORKDIR /src
 
-ENTRYPOINT ["/bin/shellcheck"]
+ENTRYPOINT ["/bin/shellcheck", "--color=always"]
