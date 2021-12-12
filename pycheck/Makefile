@@ -1,7 +1,5 @@
-whoami := $(shell whoami)
-
 build:
-	docker build --build-arg username=$(whoami) -t utils:pycheck .
+	docker build --build-arg username=$(shell whoami) -t utils:pycheck .
 
 env: build
 	cp process.sh /usr/local/bin/pycheck
