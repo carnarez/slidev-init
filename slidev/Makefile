@@ -2,8 +2,9 @@ build:
 	docker build -t utils:slidev .
 
 env: build
-	cp process.sh /usr/local/bin/slidev
-	chmod +x /usr/local/bin/slidev
+	mkdir -p ~/.local/bin
+	cp process.sh ~/.local/bin/slidev
+	chmod +x ~/.local/bin/slidev
 
 clean:
-	-@rm -fr node_modules package-lock.json
+	-rm -fr node_modules package-lock.json

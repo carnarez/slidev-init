@@ -2,5 +2,6 @@ build:
 	docker build -t utils:prettier .
 
 env: build
-	cp process.sh /usr/local/bin/prettier
-	chmod +x /usr/local/bin/prettier
+	mkdir -p ~/.local/bin
+	cp process.sh ~/.local/bin/prettier
+	chmod +x ~/.local/bin/prettier

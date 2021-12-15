@@ -2,5 +2,6 @@ build:
 	docker build -t utils:shcheck .
 
 env: build
-	cp process.sh /usr/local/bin/shcheck
-	chmod +x /usr/local/bin/shcheck
+	mkdir -p ~/.local/bin
+	cp process.sh ~/.local/bin/shcheck
+	chmod +x ~/.local/bin/shcheck

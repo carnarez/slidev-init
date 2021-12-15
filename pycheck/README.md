@@ -1,5 +1,5 @@
-**`Python` linter/checker helper tool.** Run `make env` to get everything set up (some
-might need to be run as root).
+**`Python` linter/checker helper tool.** Run `make env` to get everything set up (in
+`~/.local/bin`).
 
 Code in the current directory will be checked by:
 * [`black`](https://github.com/psf/black) to lint code,
