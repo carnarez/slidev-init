@@ -16,3 +16,4 @@ RUN pip install -U pip \
 WORKDIR /usr/src
 
 ENTRYPOINT ["/usr/local/bin/pycheck"]
+CMD ["."]
