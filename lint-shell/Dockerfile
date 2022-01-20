@@ -5,9 +5,10 @@ ARG tar=https://github.com/koalaman/shellcheck/releases/download/$tag/shellcheck
 
 WORKDIR /usr/local/bin
 
-RUN wget -O shellcheck.tar.xz $tar \
+RUN wget -qq -O shellcheck.tar.xz $tar \
  && tar -xJf shellcheck.tar.xz \
  && mv shellcheck-$tag/shellcheck . \
+ && chmod +x shellcheck \
  && rm -fr shellcheck-$tag
 
 
