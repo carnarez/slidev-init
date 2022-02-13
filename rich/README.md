@@ -16,5 +16,5 @@ Render `Markdown` files (the line length takes into account the 88 characters li
 `black`, as most of my stuff is in `Python`):
 
 ```shell
-$ rich -d 1 -lmy -W 94 *.md
+$ rich -d 1 -lmy -W 93 *.md
 ```
