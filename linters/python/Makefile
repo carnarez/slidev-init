@@ -1,7 +1,7 @@
 build:
-	docker build --build-arg username=$(shell whoami) -t utils:pycheck .
+	docker build --build-arg username=$(shell whoami) -t utils:python-linter .
 
 env: build
 	mkdir -p ~/.local/bin
-	cp process.sh ~/.local/bin/pycheck
-	chmod +x ~/.local/bin/pycheck
+	cp process.sh ~/.local/bin/pylint
+	chmod +x ~/.local/bin/pylint

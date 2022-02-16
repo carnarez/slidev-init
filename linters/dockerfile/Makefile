@@ -1,7 +1,7 @@
 build:
-	docker build -t utils:dkcheck .
+	docker build -t utils:dockerfile-linter .
 
 env: build
 	mkdir -p ~/.local/bin
-	cp process.sh ~/.local/bin/dkcheck
-	chmod +x ~/.local/bin/dkcheck
+	cp process.sh ~/.local/bin/dklint
+	chmod +x ~/.local/bin/dklint
