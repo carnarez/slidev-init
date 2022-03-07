@@ -1,7 +1,11 @@
 build:
-	docker build -t utils:prettier .
+	docker build --tag utils:prettier .
 
-env: build
-	@mkdir -p ~/.local/bin
+clean:
+	-docker rmi --force utils:prettier
+	-rm ~/.local/bin/prettier
+
+env: clean build
+	@mkdir --parents ~/.local/bin
 	cp process.sh ~/.local/bin/prettier
 	chmod +x ~/.local/bin/prettier

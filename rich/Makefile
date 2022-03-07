@@ -1,7 +1,11 @@
 build:
-	docker build -t utils:rich .
+	docker build --tag utils:rich .
 
-env: build
-	@mkdir -p ~/.local/bin
+clean:
+	-docker rmi --force utils:rich
+	-rm ~/.local/bin/rich
+
+env: clean build
+	@mkdir --parents ~/.local/bin
 	cp process.sh ~/.local/bin/rich
 	chmod +x ~/.local/bin/rich
