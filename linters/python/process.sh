@@ -2,7 +2,7 @@
 
 mypy_cache="/tmp/pycheck/${PWD##*/}/mypy_cache"
 
-if [ ! -d "$mypy_cache" ]; then mkdir -p "$mypy_cache"; fi
+if [ ! -d "$mypy_cache" ]; then mkdir --parents "$mypy_cache"; fi
 
 docker run --name pycheck \
            --rm \

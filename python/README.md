@@ -6,9 +6,9 @@ needed. Check the [Docker Hub](https://hub.docker.com/_/python) for available ve
 Users and groups are mounted (read-only) from the host system to avoid ownership issues.
 
 ```shell
-$ make version=3.10
+$ make version=3.10 env
 $ python3.10 -m venv .venv  # accepts simple execution logic
 $ python3.10  # bash interpreter inside the container
-> .venv/bin/pip install ...
+> .venv/bin/pip install ...  # local content is mounted
 > python ...
 ```
