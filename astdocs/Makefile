@@ -1,5 +1,8 @@
 build:
 	docker build --tag utils:astdocs .
+	docker run --rm --volume /var/run/docker.sock:/var/run/docker.sock dslim/docker-slim build --http-probe=false utils:astdocs
+	docker tag utils.slim:latest utils:astdocs
+	docker rmi utils.slim:latest
 
 clean:
 	-docker rmi --force utils:astdocs
