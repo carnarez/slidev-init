@@ -1,5 +1,5 @@
 build:
-	docker build --build-arg username=$(shell id -u) --tag utils:lint-python .
+	docker build --build-arg username=$(shell id -nu) --tag utils:lint-python .
 
 clean:
 	-docker rmi --force utils:lint-python
