@@ -12,5 +12,5 @@ docker run --name pycheck \
            -v /etc/group:/etc/group:ro \
            -v /etc/passwd:/etc/passwd:ro \
            -v /etc/shadow:/etc/shadow:ro \
-           utils:lint-python \
+           utils/lint-python \
            "$@"

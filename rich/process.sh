@@ -8,5 +8,5 @@ docker run --name rich \
            -v /etc/group:/etc/group:ro \
            -v /etc/passwd:/etc/passwd:ro \
            -v /etc/shadow:/etc/shadow:ro \
-           utils:rich \
+           utils/rich \
            "$@"
