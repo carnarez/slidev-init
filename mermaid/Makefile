@@ -1,8 +1,8 @@
 build:
-	docker build --tag utils:mermaid .
+	docker build --tag utils/mermaid .
 
 clean:
-	-docker rmi --force utils:mermaid
+	-docker rmi --force utils/mermaid
 	-rm ~/.local/bin/mermaid
 
 env: clean build

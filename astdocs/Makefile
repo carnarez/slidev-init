@@ -1,11 +1,11 @@
 build:
-	docker build --tag utils:astdocs .
-	docker run --rm --volume /var/run/docker.sock:/var/run/docker.sock dslim/docker-slim build --http-probe=false utils:astdocs
-	docker tag utils.slim:latest utils:astdocs
-	docker rmi utils.slim:latest
+	docker build --tag utils/astdocs .
+	docker run --rm --volume /var/run/docker.sock:/var/run/docker.sock dslim/docker-slim build --http-probe=false utils/astdocs
+	docker tag utils/astdocs.slim utils/astdocs
+	docker rmi utils/astdocs.slim
 
 clean:
-	-docker rmi --force utils:astdocs
+	-docker rmi --force utils/astdocs
 	-rm ~/.local/bin/astdocs
 
 env: clean build

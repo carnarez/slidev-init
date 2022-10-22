@@ -1,8 +1,8 @@
 build:
-	docker build --build-arg username=$(shell id -nu) --tag utils:lint-python .
+	docker build --build-arg username=$(shell id -nu) --tag utils/lint-python .
 
 clean:
-	-docker rmi --force utils:lint-python
+	-docker rmi --force utils/lint-python
 	-rm ~/.local/bin/pycheck
 
 env: clean build

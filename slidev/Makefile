@@ -1,8 +1,8 @@
 build:
-	docker build --tag utils:slidev .
+	docker build --tag utils/slidev .
 
 clean:
-	-docker rmi --force utils:slidev
+	-docker rmi --force utils/slidev
 	-rm ~/.local/bin/slidev
 
 env: clean build

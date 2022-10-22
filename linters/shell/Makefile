@@ -1,8 +1,8 @@
 build:
-	docker build --tag utils:lint-shell .
+	docker build --tag utils/lint-shell .
 
 build:
-	-docker rmi --force utils:lint-shell
+	-docker rmi --force utils/lint-shell
 	-rm ~/.local/bin/shcheck
 
 env: clean build
