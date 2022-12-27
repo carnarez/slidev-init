@@ -1,8 +1,8 @@
 build:
-	docker build --tag utils:rich .
+	docker build --tag utils/rich .
 
 clean:
-	-docker rmi --force utils:rich
+	-docker rmi --force utils/rich
 	-rm ~/.local/bin/rich
 
 env: clean build
