@@ -12,7 +12,7 @@ isort:
     check: --check
 mypy:
     cmd: mypy
-    flags: --cache-dir=/tmp/mypy_cache --install-types --no-color-output --non-interactive
+    flags: --cache-dir=/tmp/mypy_cache --explicit-package-bases --install-types --no-color-output --non-interactive
     check:
 pydocstyle:
     cmd: pydocstyle

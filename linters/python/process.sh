@@ -13,4 +13,7 @@ docker run --name pycheck \
            -v /etc/passwd:/etc/passwd:ro \
            -v /etc/shadow:/etc/shadow:ro \
            utils:lint-python \
-           "$@"
+           "$@" \
+| grep -e 'Cannot find implementation or library stub for module' \
+       -e 'See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports' \
+       -v
