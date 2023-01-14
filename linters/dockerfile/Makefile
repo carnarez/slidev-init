@@ -1,8 +1,8 @@
 build:
-	docker build --tag utils:lint-dockerfile .
+	docker build --tag utils/lint-dockerfile .
 
 clean:
-	-docker rmi --force utils:lint-dockerfile
+	-docker rmi --force utils/lint-dockerfile
 	-rm ~/.local/bin/dkcheck
 
 env: clean build

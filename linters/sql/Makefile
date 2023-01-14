@@ -1,8 +1,8 @@
 build:
-	docker build --tag utils:lint-sql .
+	docker build --tag utils/lint-sql .
 
 clean:
-	-docker rmi --force utils:lint-sql
+	-docker rmi --force utils/lint-sql
 	-rm ~/.local/bin/sqlcheck
 
 env: clean build
