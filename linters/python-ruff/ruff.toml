@@ -1,0 +1,72 @@
+cache-dir = "/tmp/.ruff"
+fix = true
+line-length = 88
+
+# https://beta.ruff.rs/docs/rules/
+# ignoring rules for django & pandas
+select = [
+  "A",   # flake8-builtins
+  "ANN", # flake8-annotations
+  "ARG", # flake8-unused-arguments
+  "B",   # flake8-bugbear
+  "BLE", # flake8-blind-except
+  "C4",  # flake8-comprehensions
+  "C90", # mccabe
+  "COM", # flake8-commas
+  "D",   # pydocstyle
+  "DTZ", # flake8-datetimez
+  "E",   # pycodestyle
+  "EM",  # flake8-errmsg
+  "ERA", # eradicate
+  "EXE", # flake8-executable
+  "F",   # pyflakes
+  "FBT", # flake8-boolean-trap
+  "I",   # isort
+  "N",   # pep8-naming
+  "NPY", # numpy
+  "PL",  # pylint
+  "PT",  # flake8-pytest-style
+  "Q",   # flake8-quotes
+  "RUF", # ruff-specific rules
+  "S",   # flake8-bandit
+  "SIM", # flake8-simplify
+  "T10", # flake8-debugger
+  "T20", # flake8-print
+  "TCH", # flake8-type-checking
+  "TID", # flake8-tidy-imports
+  "TRY", # tryceratops
+  "UP",  # pyupgrade
+  "YTT", # flake8-2020
+  "W",   # pycodestyle
+]
+
+  # "G",   # flake8-logging-format
+  # "ICN", # flake8-import-conventions
+  # "INP", # flake8-no-pep420
+  # "INT", # flake8-gettext
+  # "ISC", # flake8-implicit-str-concat
+  # "PGH", # pygrep-hooks
+  # "PIE", # flake8-pie
+  # "PT",  # flake8-pytest-style
+  # "PTH", # flake8-use-pathlib
+  # "PYI", # flake8-pyi
+  # "RSE", # flake8-raise
+  # "RET", # flake8-return
+  # "SLF", # flake8-self
+
+ignore = [
+  "ANN101", # missing type annotation for "self" in method
+  "ANN102", # missing type annotation for "cls" in classmethod
+  "D203",   # one blank line required before class docstring
+  "D213",   # multi-line docstring summary should start at the second line
+  "E741",   # ambiguous variable name
+  "N806",   # variable name should be lowercase
+]
+
+[per-file-ignores]
+"tests/**.py" = [
+  "S101",   # use of assert 
+]
+
+[flake8-type-checking]
+strict = true

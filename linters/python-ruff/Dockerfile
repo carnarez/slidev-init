@@ -1,17 +1,13 @@
 FROM python:slim
 
-ARG username
-
-RUN mkdir -p /home/$username \
- && chmod -R 777 /home/$username
-
 COPY hooks.sh /usr/local/bin/pycheck
 COPY hooks.yaml /usr/share/pycheck/hooks.yaml
-COPY requirements.txt /tmp/requirements.txt
 
 RUN pip install -U pip \
- && pip install --no-cache-dir -r /tmp/requirements.txt \
+ && pip install --no-cache-dir black ruff \
  && chmod +x /usr/local/bin/pycheck
+
+COPY ruff.toml /usr/share/pycheck/ruff.toml
 
 WORKDIR /usr/src
 
