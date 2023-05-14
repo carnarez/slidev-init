@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker run --name dkcheck --rm -v "$PWD":/src linters/dockerfile "$@"
+docker run --name dkcheck --rm --volume "$PWD":/src linters/dockerfile "$@"

@@ -5,7 +5,6 @@ line-length = 88
 
 extend-exclude = [
   "**/optimizers/**",
-  "**/parsers/flowchart.py",
   "**/renderers/objects/group.py",
   "**/renderers/objects/link.py",
   "**/renderers/objects/node.py",

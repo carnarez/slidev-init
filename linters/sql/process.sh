@@ -2,10 +2,10 @@
 
 docker run --name sqlcheck \
            --rm \
-           -u $(id -u):$(id -g) \
-           -v "$PWD":/usr/src \
-           -v /etc/group:/etc/group:ro \
-           -v /etc/passwd:/etc/passwd:ro \
-           -v /etc/shadow:/etc/shadow:ro \
+           --user $(id -u):$(id -g) \
+           --volume "$PWD":/usr/src \
+           --volume /etc/group:/etc/group:ro \
+           --volume /etc/passwd:/etc/passwd:ro \
+           --volume /etc/shadow:/etc/shadow:ro \
            linters/sql \
            "$@"
