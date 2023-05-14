@@ -1,8 +1,0 @@
-black:
-    cmd: black
-    flags:
-    check: --check
-ruff:
-    cmd: ruff
-    flags: --config /usr/share/pycheck/ruff.toml --fix
-    check: --config /usr/share/pycheck/ruff.toml

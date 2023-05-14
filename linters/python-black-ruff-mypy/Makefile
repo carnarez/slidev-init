@@ -1,8 +1,10 @@
+TAG=linters/python
+
 build:
-	docker build --build-arg username=$(shell id -nu) --tag utils/lint-python .
+	docker build --build-arg username=$(shell id -nu) --tag $(TAG) .
 
 clean:
-	-docker rmi --force utils/lint-python
+	-docker rmi --force $(TAG)
 	-rm ~/.local/bin/pycheck
 
 env: clean build

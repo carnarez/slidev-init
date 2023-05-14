@@ -1,5 +1,9 @@
+TAG=linters/python
+
 build:
-	docker build --tag utils/lint-python .
+	docker build --build-arg username=$(shell id -nu) \
+	             --tag $(TAG) \
+	             ..
 
 clean:
 	-docker rmi --force utils/lint-python
