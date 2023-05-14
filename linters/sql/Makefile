@@ -1,8 +1,10 @@
+TAG=linters/sql
+
 build:
-	docker build --tag utils/lint-sql .
+	docker build --tag $(TAG) .
 
 clean:
-	-docker rmi --force utils/lint-sql
+	-docker rmi --force $(TAG)
 	-rm ~/.local/bin/sqlcheck
 
 env: clean build
