@@ -3,15 +3,6 @@
 cache-dir = "/tmp/ruff_cache"
 line-length = 88
 
-extend-exclude = [
-  "**/optimizers/**",
-  "**/renderers/objects/group.py",
-  "**/renderers/objects/link.py",
-  "**/renderers/objects/node.py",
-  "tests",
-  "**/_unused.py",
-]
-
 # https://beta.ruff.rs/docs/rules/
 # switching all rules on; we like to be exhaustive, even if slower...
 # ignoring boolean traps though, sorry Martin (https://martinfowler.com/bliki/FlagArgument.html)
@@ -80,6 +71,9 @@ ignore = [
 ]
 
 [per-file-ignores]
+"test_*.py" = [
+  "S101", # use of assert 
+]
 "tests/**.py" = [
   "S101", # use of assert 
 ]
