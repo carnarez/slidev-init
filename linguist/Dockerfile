@@ -3,10 +3,10 @@ FROM alpine
 ENV RUBYOPT="-W0"
 
 RUN apk --update --no-cache add git \
-                                    ruby \
-                                    ruby-charlock_holmes \
-                                    ruby-json \
-                                    ruby-rugged \
+                                ruby \
+                                ruby-charlock_holmes \
+                                ruby-json \
+                                ruby-rugged \
   && apk --update --no-cache add --virtual build-dependencies build-base \
                                                               cmake \
                                                               icu-dev \
