@@ -1,5 +1,9 @@
 FROM alpine
 
+ENV TERM=xterm-256color
+
+COPY entrypoint.sh /usr/local/bin/enchant
+
 RUN apk --update --no-cache add aspell \
                                 aspell-en \
                                 hunspell \
@@ -8,8 +12,10 @@ RUN apk --update --no-cache add aspell \
                                 enchant2 \
                                 enchant2-aspell \
                                 enchant2-hunspell \
-                                enchant2-nuspell
+                                enchant2-nuspell \
+                                ncurses \
+ && chmod +x /usr/local/bin/enchant
 
 WORKDIR /usr/src
 
-ENTRYPOINT ["enchant-2", "-L", "-a", "-l"]
+ENTRYPOINT ["/usr/local/bin/enchant"]
