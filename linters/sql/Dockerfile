@@ -1,7 +1,7 @@
 FROM python:slim
 
 RUN pip install --upgrade pip \
- && pip install --no-cache-dir pglast sqlfluff sqlparse
+ && pip install --no-cache-dir pglast sqlfluff sqlglot sqlparse
 
 WORKDIR /usr/src
 
