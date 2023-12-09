@@ -4,6 +4,7 @@ favourite):
 
 * [`pglast`](https://github.com/lelit/pglast)
 * [`sqlfluff`](https://github.com/sqlfluff/sqlfluff)
+* [`sqlglot`](https://github.com/tobymao/sqlglot)
 * [`sqlparse`](https://github.com/andialbrecht/sqlparse)
 
 Users and groups are mounted (read-only) from the host system to avoid ownership issues.
