@@ -1,4 +1,4 @@
-FROM python:slim
+FROM python:3.10-slim
 
 ARG username
 
@@ -9,7 +9,7 @@ COPY hooks.sh /usr/local/bin/pycheck
 COPY hooks.yaml /usr/share/pycheck/hooks.yaml
 
 RUN pip install -U pip \
- && pip install --no-cache-dir black mypy pytest-stub ruff \
+ && pip install --no-cache-dir mypy pytest-stub ruff \
  && chmod +x /usr/local/bin/pycheck
 
 COPY ruff.toml /usr/share/pycheck/ruff.toml
