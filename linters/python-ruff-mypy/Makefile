@@ -11,3 +11,10 @@ env: clean build
 	@mkdir --parents ~/.local/bin
 	cp process.sh ~/.local/bin/pycheck
 	chmod +x ~/.local/bin/pycheck
+
+compare: 
+	@docker run --entrypoint /usr/local/bin/ruff --interactive --rm $(TAG) \
+	    rule --all | grep -E '^# .* \([A-Z]*[0-9]*\)' | sed -E 's/.*\(([A-Z]*)[0-9]*\)/\1/g' | sort | uniq > 1
+	@sed -n '/^lint.select/,/^]/p' ruff.toml | grep -e '\[' -e '\]' -v | sed -E 's/.*"([A-Z]*)[0-9]*",.*/\1/g' | sort | uniq > 2
+	@diff ? || exit 0
+	@rm ?
