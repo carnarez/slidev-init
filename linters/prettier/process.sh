@@ -7,5 +7,5 @@ docker run --name prettier \
            -v /etc/group:/etc/group:ro \
            -v /etc/passwd:/etc/passwd:ro \
            -v /etc/shadow:/etc/shadow:ro \
-           utils/prettier \
+           linters/prettier \
            "$@"

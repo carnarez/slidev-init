@@ -1,8 +1,8 @@
 build:
-	docker build --tag utils/prettier .
+	docker build --tag linters/prettier .
 
 clean:
-	-docker rmi --force utils/prettier
+	-docker rmi --force linters/prettier
 	-rm ~/.local/bin/prettier
 
 env: clean build
