@@ -3,7 +3,7 @@ TAG=linters/shell
 build:
 	docker build --tag $(TAG) .
 
-build:
+clean:
 	-docker rmi --force $(TAG)
 	-rm ~/.local/bin/shcheck
 
