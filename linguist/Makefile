@@ -8,4 +8,3 @@ clean:
 env: clean build
 	@mkdir --parents ~/.local/bin
 	cp process.sh ~/.local/bin/linguist
-	chmod +x ~/.local/bin/linguist

@@ -10,5 +10,5 @@ COPY entrypoint.sh /usr/local/bin
 
 WORKDIR /usr/src
 
-ENTRYPOINT ["bash", "/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["."]

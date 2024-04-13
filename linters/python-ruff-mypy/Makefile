@@ -10,7 +10,6 @@ clean:
 env: clean build
 	@mkdir --parents ~/.local/bin
 	cp process.sh ~/.local/bin/pycheck
-	chmod +x ~/.local/bin/pycheck
 
 compare: 
 	@docker run --entrypoint /usr/local/bin/ruff --interactive --rm $(TAG) \

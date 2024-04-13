@@ -10,4 +10,3 @@ build:
 env: clean build
 	@mkdir -p ~/.local/bin
 	cp process.sh ~/.local/bin/shcheck
-	chmod +x ~/.local/bin/shcheck

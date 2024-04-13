@@ -8,4 +8,3 @@ clean:
 env: clean build
 	@mkdir --parents ~/.local/bin
 	cp process.sh ~/.local/bin/sass
-	chmod +x ~/.local/bin/sass

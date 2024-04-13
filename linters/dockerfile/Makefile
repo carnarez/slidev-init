@@ -10,4 +10,3 @@ clean:
 env: clean build
 	@mkdir --parents ~/.local/bin
 	cp process.sh ~/.local/bin/dkcheck
-	chmod +x ~/.local/bin/dkcheck

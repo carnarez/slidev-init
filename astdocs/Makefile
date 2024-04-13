@@ -11,4 +11,3 @@ clean:
 env: clean build
 	@mkdir --parents ~/.local/bin
 	cp process.sh ~/.local/bin/astdocs
-	chmod +x ~/.local/bin/astdocs

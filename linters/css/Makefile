@@ -14,4 +14,3 @@ clean:
 env: clean build
 	@mkdir --parents ~/.local/bin
 	cp process.sh ~/.local/bin/csscheck
-	chmod +x ~/.local/bin/csscheck
