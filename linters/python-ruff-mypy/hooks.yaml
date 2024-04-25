@@ -1,11 +1,11 @@
 check:
-    cmd: ruff check
-    flags: --config /usr/share/pycheck/ruff.toml --fix
-    check: --config /usr/share/pycheck/ruff.toml --check
+    cmd: ruff check --cache-dir /tmp/ruff_cache --config /usr/share/pycheck/ruff.toml
+    flags: --fix
+    check: --check
 format:
-    cmd: ruff format
-    flags: --config /usr/share/pycheck/ruff.toml
-    check: --config /usr/share/pycheck/ruff.toml --check
+    cmd: ruff format --cache-dir /tmp/ruff_cache --config /usr/share/pycheck/ruff.toml
+    flags: 
+    check: --check
 mypy:
     cmd: mypy
     flags: --cache-dir=/tmp/mypy_cache --ignore-missing-imports --install-types --no-color-output --non-interactive
