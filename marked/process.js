@@ -3,6 +3,8 @@
 // node process.js tests.md
 
 const fs = require("node:fs")
+
+const frontmatter = require("front-matter")
 const highlight = require("highlight.js")
 const HTMLParser = require("fast-html-parser")
 const Marked = require("marked").Marked
@@ -36,6 +38,7 @@ const minifyOptions = {
   useShortDoctype: true
 }
 
+// markdown-to-html
 const marked = new Marked(
   markedHighlight({
     highlight(code, lang, info) {
@@ -49,8 +52,27 @@ const marked = new Marked(
 .use(markedHeading())
 .use(markedKatex(katexOptions))
 
-const html = marked.parse(fs.readFileSync(process.argv[2], "utf8"))
-const json = { title: process.argv[2], body: HTMLParser.parse(html).structuredText }
+// table of contents
+const renderer = new marked.Renderer()
+
+renderer.heading = function (text, level, raw) {
+  const anchor = "#" + raw.toLowerCase().replace(/[^\w]+/g, "-")
+  toc.push({ anchor: anchor, level: level, text: text })
+  return `<h${level} id="${anchor}">${text}</h${level}>\n`
+}
+
+marked.setOptions({ renderer: renderer })
+
+// input
+const text = fs.readFileSync(process.argv[2], "utf8")
+
+// output
+const toc = []
+
+const desc = frontmatter(text)
+const html = marked.parse(desc.body)
+const json = { title: process.argv[2].replace(/.md$/, ""), body: HTMLParser.parse(html).structuredText }
+const meta = desc.attributes
 const mini = minify(html, minifyOptions)
 
 process.stdout.write(mini)

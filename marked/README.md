@@ -7,5 +7,7 @@ extensions by default:
 * [GFM heading IDs](https://github.com/markedjs/marked-gfm-heading-id)
 * [Syntax highlight](https://github.com/markedjs/marked-highlight) (via `highlight.js`)
 
-As well as a crude text extractor to prepare content to be indexed via `Lunr` (via
-`fast-html-parser`), and a HTML minifier (via `html-minifier`).
+As well as a crude text extractor to prepare content to be indexed via
+[`Lunr`](https://lunrjs.com/) (via
+[`fast-html-parser`](https://github.com/ashi009/node-fast-html-parser)), and a HTML
+minifier (via [`html-minifier`](https://github.com/kangax/html-minifier)).

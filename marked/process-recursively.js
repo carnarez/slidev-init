@@ -1,8 +1,10 @@
 #!/usr/local/bin/node
 
-// node process.js tests.md
+// node process.js file.md path/to/file.md
 
 const fs = require("node:fs")
+
+const frontmatter = require("front-matter")
 const highlight = require("highlight.js")
 const HTMLParser = require("fast-html-parser")
 const lunr = require("lunr")
@@ -37,6 +39,7 @@ const minifyOptions = {
   useShortDoctype: true
 }
 
+// markdown-to-html
 const marked = new Marked(
   markedHighlight({
     highlight(code, lang, info) {
@@ -50,23 +53,47 @@ const marked = new Marked(
 .use(markedHeading())
 .use(markedKatex(katexOptions))
 
+// table of contents
+const renderer = new marked.Renderer()
+
+renderer.heading = function (text, level, raw) {
+  const anchor = "#" + raw.toLowerCase().replace(/[^\w]+/g, "-")
+  toc.push({ anchor: anchor, level: level, text: text })
+  return `<h${level} id="${anchor}">${text}</h${level}>\n`
+}
+
+marked.setOptions({ renderer: renderer })
+
+// process each input
 const pages = []
 
 process.argv.slice(2).forEach(path => {
-  s = minify(marked.parse(fs.readFileSync(path, "utf8")), minifyOptions)
+  let text = fs.readFileSync(path, "utf8")
+
+  let toc = []
+
+  let desc = frontmatter(text)
+  let html = marked.parse(desc.body)
+  let meta = desc.attributes
+  let mini = minify(html, minifyOptions)
+
   pages.push({
+    html: mini,
+    meta: meta,
     path: path.replace(/.md$/, ".html"),
+    text: HTMLParser.parse(html).structuredText,
     title: path.replace(/.md$/, ""),
-    text: HTMLParser.parse(s).structuredText,
-    html: s
+    toc: toc
   })
 })
 
+// pre-build lunr index
 const index = lunr(function () {
   ["title", "text"].forEach(f => this.field(f), this)
   this.ref("path")
   pages.forEach(d => this.add(d), this)
 })
 
+// output
 pages.forEach(page => fs.writeFileSync(page.path, page.html))
 fs.writeFileSync("index.json", JSON.stringify(index))

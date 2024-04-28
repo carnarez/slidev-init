@@ -3,6 +3,7 @@ FROM node:alpine
 RUN echo "update-notifier=false" > /root/.npmrc \
  && npm install --global --no-audit --no-fund --global \
       fast-html-parser \
+      front-matter \
       highlight.js \
       html-minifier \
       katex \
