@@ -8,3 +8,4 @@ clean:
 env:
 	@mkdir --parents ~/.local/bin
 	sed "s/X.X/$(version)/g" process.sh > ~/.local/bin/python$(version)
+	chmod +x ~/.local/bin/python$(version)
