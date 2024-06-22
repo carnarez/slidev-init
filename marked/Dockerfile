@@ -7,7 +7,6 @@ RUN echo "update-notifier=false" > /root/.npmrc \
       highlight.js \
       html-minifier \
       katex \
-      lunr \
       marked \
       marked-alert \
       marked-footnote \

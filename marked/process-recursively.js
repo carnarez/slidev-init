@@ -7,7 +7,6 @@ const fs = require("node:fs")
 const frontmatter = require("front-matter")
 const highlight = require("highlight.js")
 const HTMLParser = require("fast-html-parser")
-const lunr = require("lunr")
 const Marked = require("marked").Marked
 const markedAlert = require("marked-alert")
 const markedFootnote = require("marked-footnote")
@@ -53,45 +52,48 @@ const marked = new Marked(
 .use(markedHeading())
 .use(markedKatex(katexOptions))
 
-// table of contents
-const renderer = new marked.Renderer()
-
-renderer.heading = function (text, level, raw) {
-  const anchor = "#" + raw.toLowerCase().replace(/[^\w]+/g, "-")
-  toc.push({ anchor: anchor, level: level, text: text })
-  return `<h${level} id="${anchor}">${text}</h${level}>\n`
-}
-
-marked.setOptions({ renderer: renderer })
-
 // process each input
 const pages = []
+const index = []
 
-process.argv.slice(2).forEach(path => {
-  let text = fs.readFileSync(path, "utf8")
+process.argv.slice(2).forEach(p => {
 
-  let toc = []
+  // table of contents
+  const toc = []
 
-  let desc = frontmatter(text)
-  let html = marked.parse(desc.body)
-  let meta = desc.attributes
-  let mini = minify(html, minifyOptions)
+  const renderer = new marked.Renderer()
 
+  renderer.heading = function (t) {
+    const anchor = "#" + t.text.toLowerCase().replace(/[^\w]+/g, "-")
+    toc.push({ anchor: anchor, level: t.depth, text: t.text })
+    return `<h${t.depth} id="${anchor}">${t.text}</h${t.depth}>\n`
+  }
+
+  marked.setOptions({ renderer: renderer })
+
+  // input
+  const t = fs.readFileSync(p, "utf8")
+
+  // converted
+  const desc = frontmatter(t)
+  const html = marked.parse(desc.body)
+  const meta = desc.attributes
+  const mini = minify(html, minifyOptions)
+  const path = p.replace(/.md$/, ".html")
+  const text = HTMLParser.parse(html).structuredText
+
+  // stored
   pages.push({
     html: mini,
     meta: meta,
-    path: path.replace(/.md$/, ".html"),
-    text: HTMLParser.parse(html).structuredText,
-    title: path.replace(/.md$/, ""),
+    path: path,
+    text: text,
+    title: p.replace(/.md$/, ""),
     toc: toc
   })
-})
 
-// pre-build lunr index
-const index = lunr(function () {
-  ["title", "text"].forEach(f => this.field(f), this)
-  this.ref("path")
-  pages.forEach(d => this.add(d), this)
+  index.push({ path: path, text: text })
+
 })
 
 // output

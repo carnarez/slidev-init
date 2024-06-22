@@ -55,10 +55,10 @@ const marked = new Marked(
 // table of contents
 const renderer = new marked.Renderer()
 
-renderer.heading = function (text, level, raw) {
-  const anchor = "#" + raw.toLowerCase().replace(/[^\w]+/g, "-")
-  toc.push({ anchor: anchor, level: level, text: text })
-  return `<h${level} id="${anchor}">${text}</h${level}>\n`
+renderer.heading = function (t) {
+  const anchor = "#" + t.text.toLowerCase().replace(/[^\w]+/g, "-")
+  toc.push({ anchor: anchor, level: t.depth, text: t.text })
+  return `<h${t.depth} id="${anchor}">${t.text}</h${t.depth}>\n`
 }
 
 marked.setOptions({ renderer: renderer })
@@ -71,7 +71,7 @@ const toc = []
 
 const desc = frontmatter(text)
 const html = marked.parse(desc.body)
-const json = { title: process.argv[2].replace(/.md$/, ""), body: HTMLParser.parse(html).structuredText }
+const json = { title: process.argv[2].replace(/.md$/, ""), text: HTMLParser.parse(html).structuredText }
 const meta = desc.attributes
 const mini = minify(html, minifyOptions)
 

@@ -6,10 +6,7 @@ lint.select = ["ALL"]
 lint.ignore = [
   "CPY",   # flake8-copyright
   "FA",    # flake8-future-annotations
-  # ignoring boolean traps though, sorry Martin (https://martinfowler.com/bliki/FlagArgument.html)
-  "FBT",   # flake8-boolean-trap
   "FIX",   # flake8-fixme
-  "FURB",  # refurb
   "TD",    # flake8-todos
 ]
 
