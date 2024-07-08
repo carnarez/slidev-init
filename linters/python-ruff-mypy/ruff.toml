@@ -21,6 +21,9 @@ lint.extend-ignore = [
   # ignoring some rules to please the formatter (and silent some intempestive warnings)
   "COM812",  # missing trailing comma
   "ISC001",  # single line implicit string concatenation
+  # ignoring some rules to please the linter (and silent some annoying warnings)
+  "D203",     # one blank line required before class docstring
+  "D213",     # multi-line docstring summary should start at the second line
 ]
 
 [lint.per-file-ignores]
