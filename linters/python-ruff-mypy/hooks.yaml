@@ -1,6 +1,6 @@
 check:
     cmd: ruff check --cache-dir /tmp/ruff_cache --config /usr/share/pycheck/ruff.toml
-    flags: --fix
+    flags: --fix --quiet
     check: --check
 format:
     cmd: ruff format --cache-dir /tmp/ruff_cache --config /usr/share/pycheck/ruff.toml
